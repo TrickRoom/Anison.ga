@@ -105,11 +105,8 @@ $animelink="https://anilist.co/anime/{$song->animeid}";
 
     function handleData(data) {
         var dt = data.data.Media;
-
-        //Null checks
         startDate = (dt.startDate.month + "/" + dt.startDate.day + "/" + dt.startDate.year + "" == "null/null/null") ? 'TBD' :  (dt.startDate.month + "/" + dt.startDate.day + "/" + dt.startDate.year);
         endDate = (dt.endDate.month + "/" + dt.endDate.day + "/" + dt.endDate.year == "null/null/null") ? 'TBD' :  (dt.endDate.month + "/" + dt.endDate.day + "/" + dt.endDate.year);
-
         document.getElementById('description').innerHTML += dt.description;
         document.getElementById('episodes').innerHTML += dt.episodes;
         document.getElementById('duration').innerHTML += dt.duration + " minutes";
