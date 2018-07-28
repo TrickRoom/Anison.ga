@@ -105,12 +105,16 @@ $animelink="https://anilist.co/anime/{$song->animeid}";
 
     function handleData(data) {
         var dt = data.data.Media;
-        if (dt.endDate.month + "/" + dt.endDate.day + "/" + dt.endDate.year == "null/null/null") {var date = 'TBD';} else {var date = dt.endDate.month + "/" + dt.endDate.day + "/" + dt.endDate.year;}
+
+        //Null checks
+        startDate = (dt.startDate.month + "/" + dt.startDate.day + "/" + dt.startDate.year + "" == "null/null/null") ? 'TBD' :  (dt.startDate.month + "/" + dt.startDate.day + "/" + dt.startDate.year);
+        endDate = (dt.endDate.month + "/" + dt.endDate.day + "/" + dt.endDate.year == "null/null/null") ? 'TBD' :  (dt.endDate.month + "/" + dt.endDate.day + "/" + dt.endDate.year);
+
         document.getElementById('description').innerHTML += dt.description;
         document.getElementById('episodes').innerHTML += dt.episodes;
         document.getElementById('duration').innerHTML += dt.duration + " minutes";
-        document.getElementById('started').innerHTML += dt.startDate.month + "/" + dt.startDate.day + "/" + dt.startDate.year;
-        document.getElementById('ended').innerHTML += date;
+        document.getElementById('started').innerHTML += startDate;
+        document.getElementById('ended').innerHTML += endDate;
         document.getElementById('title').innerHTML = dt.title.romaji + " | " + dt.title.native;
         document.getElementById('cover').src = dt.coverImage.large;
     }
